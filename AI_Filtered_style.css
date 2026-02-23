@@ -1,0 +1,466 @@
+/* ==========================================================================
+   1. CSS VARIABLES & DESIGN SYSTEM
+   ========================================================================== */
+:root {
+    /* Amazon Color Palette */
+    --clr-nav-main: #131921;
+    --clr-nav-sub: #232f3e;
+    --clr-accent: #febd69;
+    --clr-accent-hover: #f3a847;
+    --clr-bg-main: #e3e6e6;
+    --clr-white: #ffffff;
+    --clr-text-dark: #0f1111;
+    --clr-text-muted: #cccccc;
+    --clr-link: #007185;
+    --clr-link-hover: #c40000;
+    
+    /* Layout styling */
+    --shadow-soft: 0 4px 8px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.12);
+    --border-radius: 4px;
+}
+
+/* ==========================================================================
+   2. RESET & BASE STYLES
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Amazon Ember", Arial, sans-serif;
+}
+
+body {
+    background-color: var(--clr-bg-main);
+    color: var(--clr-text-dark);
+}
+
+/* ==========================================================================
+   3. HEADER & NAVBAR (Sticky & Responsive)
+   ========================================================================== */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    height: 60px;
+    background-color: var(--clr-nav-main);
+    color: var(--clr-white);
+    display: flex;
+    align-items: center;
+    padding: 0 10px;
+    gap: 10px;
+}
+
+/* Hover Boundaries (Amazon Style) */
+.border {
+    border: 1px solid transparent;
+    border-radius: 2px;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: border 0.1s ease;
+}
+
+.border:hover {
+    border: 1px solid var(--clr-white);
+}
+
+/* Logo */
+.nav-logo {
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    background-image: url('./assets/amazon_logo.png'); /* Retained original path */
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 100px;
+    margin-top: 5px;
+}
+
+/* Location / Address */
+.nav-address {
+    align-items: flex-start;
+}
+
+.add-first {
+    color: var(--clr-text-muted);
+    font-size: 0.75rem;
+    padding-left: 18px;
+}
+
+.add-icon {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-weight: 700;
+}
+
+.add-sec {
+    font-size: 0.85rem;
+}
+
+/* Flexible Search Bar */
+.nav-search {
+    display: flex;
+    flex-grow: 1; /* Allows search bar to dynamically fill empty space */
+    height: 40px;
+    border-radius: var(--border-radius);
+    background-color: var(--clr-white);
+    overflow: hidden;
+    border: 3px solid transparent; /* Hidden border for focus state */
+    transition: border-color 0.2s ease;
+}
+
+.nav-search:focus-within {
+    border-color: var(--clr-accent-hover); /* Amazon orange focus ring */
+}
+
+.search-select {
+    background-color: #f3f3f3;
+    color: #555;
+    width: auto;
+    padding: 0 10px;
+    text-align: center;
+    border: none;
+    border-right: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.search-input {
+    flex-grow: 1;
+    font-size: 1rem;
+    border: none;
+    padding: 0 10px;
+    outline: none; /* Removed standard outline due to focus-within trick above */
+}
+
+.search-icon {
+    width: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    background-color: var(--clr-accent);
+    color: var(--clr-nav-main);
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.search-icon:hover {
+    background-color: var(--clr-accent-hover);
+}
+
+/* Account & Returns */
+.nav-signin p span,
+.nav-return p span {
+    font-size: 0.75rem;
+    color: var(--clr-text-muted);
+}
+
+.nav-second {
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+/* Cart */
+.nav-cart {
+    flex-direction: row;
+    align-items: flex-end;
+    font-weight: 700;
+    gap: 5px;
+}
+
+.nav-cart i {
+    font-size: 28px;
+}
+
+/* Secondary Navigation (Panel) */
+.pannel {
+    background-color: var(--clr-nav-sub);
+    height: 40px;
+    display: flex;
+    color: var(--clr-white);
+    align-items: center;
+    padding: 0 15px;
+    font-size: 0.85rem;
+}
+
+.pannel-all {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 8px;
+    border: 1px solid transparent;
+}
+
+.pannel-all:hover { border: 1px solid var(--clr-white); }
+
+.pannel-ops {
+    display: flex;
+    gap: 15px;
+    padding-left: 15px;
+    flex-grow: 1;
+}
+
+.pannel-ops p {
+    cursor: pointer;
+    padding: 8px;
+    border: 1px solid transparent;
+}
+
+.pannel-ops p:hover { border: 1px solid var(--clr-white); }
+
+.pannel-deals {
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   4. HERO SECTION (With Gradient Fade)
+   ========================================================================== */
+.hero-section {
+    height: 350px;
+    /* CSS Gradient Overlay mixed with your original image path */
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0) 50%, var(--clr-bg-main) 100%), 
+                      url("./assets/hero_image.jpg"); 
+    background-size: cover;
+    background-position: center top;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Pushes the message to the bottom */
+    padding-bottom: 20px;
+    position: relative;
+}
+
+.hero-messaage {
+    background-color: #f5f6f6;
+    color: var(--clr-text-dark);
+    padding: 12px;
+    text-align: center;
+    font-size: 0.85rem;
+    width: 95%;
+    max-width: 1400px;
+    margin-bottom: 120px; /* Leaves space for the product grid to overlap! */
+    z-index: 5;
+    border-radius: var(--border-radius);
+}
+
+.hero-messaage a {
+    color: var(--clr-link);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.hero-messaage a:hover {
+    color: var(--clr-link-hover);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   5. PRODUCT GRID (CSS Grid Magic + Overlap)
+   ========================================================================== */
+.shop-section {
+    display: grid;
+    /* Auto-fit calculates columns dynamically based on screen size */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 0 20px 20px 20px;
+    max-width: 1500px;
+    margin: -120px auto 0 auto; /* Pulls the grid UP over the hero image */
+    position: relative;
+    z-index: 10;
+}
+
+.box {
+    background-color: var(--clr-white);
+    height: 420px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-soft);
+    border-radius: var(--border-radius);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.box:hover {
+    box-shadow: var(--shadow-hover);
+    transform: translateY(-4px); /* Professional card lift micro-interaction */
+}
+
+.box-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.box-content h2 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.box-img {
+    flex-grow: 1; /* Pushes the 'See More' link to the very bottom */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.box-content p {
+    color: var(--clr-link);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: auto;
+}
+
+.box-content p:hover {
+    color: var(--clr-link-hover);
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   6. FOOTER 
+   ========================================================================== */
+footer {
+    margin-top: 40px;
+}
+
+.foot-pannel1 {
+    background-color: #37475a;
+    color: var(--clr-white);
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.foot-pannel1:hover {
+    background-color: #485769;
+}
+
+/* Used CSS Grid to structure the bad HTML format */
+.foot-pannel2 {
+    background-color: var(--clr-nav-sub);
+    color: var(--clr-white);
+    padding: 50px 10%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+}
+
+ul { list-style: none; }
+
+.foot-pannel2 ul p {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    color: var(--clr-white);
+}
+
+/* Styling the raw <a> tags inside the <ul> */
+.foot-pannel2 ul a {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+    color: var(--clr-text-muted);
+    cursor: pointer;
+}
+
+.foot-pannel2 ul a:hover {
+    text-decoration: underline;
+}
+
+.foot-pannel3 {
+    background-color: var(--clr-nav-sub);
+    border-top: 1px solid #3a4553;
+    padding: 30px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.foot-pannel4 {
+    background-color: var(--clr-nav-main);
+    color: var(--clr-white);
+    padding: 30px 0;
+    font-size: 0.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.pages a {
+    padding: 0 10px;
+    color: var(--clr-text-muted);
+    cursor: pointer;
+}
+
+.pages a:hover {
+    text-decoration: underline;
+}
+
+.copyright {
+    color: var(--clr-text-muted);
+}
+
+/* ==========================================================================
+   7. CSS-ONLY RESPONSIVENESS
+   ========================================================================== */
+@media (max-width: 900px) {
+    /* Hide some nav items on smaller screens to make room for search */
+    .nav-address, .nav-return, .pannel-deals { 
+        display: none; 
+    }
+}
+
+@media (max-width: 600px) {
+    /* Stack the navbar on mobile devices */
+    .navbar {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px;
+    }
+    
+    /* Push search bar to its own row at the bottom of the header */
+    .nav-search {
+        order: 3;
+        width: 100%;
+        margin-top: 10px;
+    }
+    
+    .pannel-ops { display: none; } /* Hide sub-nav text on mobile */
+    
+    .hero-section {
+        height: 250px;
+    }
+    
+    .shop-section {
+        margin-top: -60px; /* Adjust overlap for mobile */
+        grid-template-columns: 1fr; /* Single column layout */
+    }
+    
+    .foot-pannel2 {
+        padding: 30px 5%;
+        grid-template-columns: 1fr 1fr; /* 2 column footer on mobile */
+    }
+}
